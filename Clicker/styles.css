@@ -1,0 +1,65 @@
+html {
+	font-family: georgia;
+}
+
+p {
+	font-family: georgia;
+	font-size: 12px;
+}
+
+img {
+	max-width: 10%;
+	height: auto;
+}
+
+.upgrade-button {
+	background-color: blue;
+}
+
+.hero {
+	padding: 2px 2px 2px 2px;
+	border: solid black 1px;
+}
+
+.info-window {
+	padding: 2px 2px 2px 2px;
+	border: solid black 1px;
+}
+
+#monster-box {
+	display: flex;
+	flex-direction: column;
+}
+
+#attack-button {
+	background-color: red;
+	max-width: 70px;
+	height: auto;
+}
+
+#interact-box {
+	display: flex;
+	padding: 5px 5px 5px 5px;
+}
+
+#hero-box {
+	flex-direction: column;
+	flex-wrap: wrap;
+	
+	width: 60%;
+	height: auto;
+	padding: 2px 2px 2px 2px;
+	
+	background-color: gray;
+}
+
+#info-box {
+	flex-direction: column;
+	
+	width: 40%;
+	height: auto;
+	padding: 2px 2px 2px 2px;
+	
+	background-color: gray;
+	font-size: 12px;	
+}
