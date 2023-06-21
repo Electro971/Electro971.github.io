@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Cool Clicker Game</title>
+	<title>Adventure Clicker</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="script.js"></script>
 	<noscript>Brower cannot use JavaScript! (Required)</noscript>
 </head>
 
-<body onload="load()">
-	<h1>CCG<h1>
+<body onload="firstLoad()">
+	<h1>Adventure Clicker<h1>
 	
 	<div id="monster-box">
-		<img id="monster" src="2.png">
-		<p id="monster-label" class="info-box">Current Monster: </p>
-		<p id="hp-label" class="info-box">Monster HP: </p>
+		<img id="monster" src="">
+		<p id="monster-label" class="info-box">Current Monster: <span id="monster-name"></span></p>
+		<p id="hp-label" class="info-box">HP Left: <span id="hp-num"></span></p>
 		<p id="level-label" class="info-box">Monster Level: </p>
 		<button id="attack-button" onclick="attack()">Attack</button>
 	</div>
@@ -50,4 +50,5 @@
 	</div>
 	
 	<button onclick="save()">Save</button>
+	<button onclick="load()">Load</button>
 </body>
