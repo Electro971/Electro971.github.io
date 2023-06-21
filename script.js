@@ -4,22 +4,8 @@ function getRandomInt(max) {
 
 function firstLoad()
 {
-	kills=0;
-	gold=0;
-	mana=0;
-	zone = 1;
-	stage=1;
-	counter = 0;
-	level=1;
-	
-	if (JSON.parse(localStorage.getItem("gameSave")) !== null)
-		load();
-	else
-	{
-		newMonster();
-		setHP(10);
-	}
-	
+	counter=0;
+	load();
 	globalUpdate();
 }
 
@@ -38,41 +24,58 @@ function save()
 		gold: gold,
 		hp: hp,
 		zone: zone,
-		level: level,
+		stage: stage,
 		kills: kills,
-		
+		monster: document.getElementById("monster-name")
 	};
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
 
 //autosave
-setInterval (function() {
+/* setInterval (function() {
 	 save();
 	alert("Autosave Complete!")
-}, 300000); //3 minutes
+}, 300000); //3 minutes */
 
-function load() {
+function buy(hero, cost)
+{
+	if (gold >= cost)
+		
+}
+
+function upgrade(hero)
+{
+	if (gold )
+}
+
+function updateHero(hero)
+{
+	localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}
+
+function load() 
+{
 	savedGame = JSON.parse(localStorage.getItem("gameSave"));
 	
-	if (typeof savedGame.gold !== "undefined")
+	if (savedGame != null)
+	{
 		gold = savedGame.gold;
-	else
-		gold = -1;
-	if (typeof savedGame.hp !== "undefined")
 		hp = savedGame.hp;
-	else hp = setHP();
-	if (typeof savedGame.zone !== "undefined")
 		zone = savedGame.zone;
-	else
-		zone = 1;
-	if (typeof savedGame.level !== "undefined")
-		level = savedGame.level;
-	else
-		level = 0;
-	if (typeof savedGame.kills !== "undefined")
+		stage = savedGame.stage;
 		kills = savedGame.kills;
+		monster = savedGame.monster;
+	}
 	else
-		kills = -1;
+	{
+		gold = 0;
+		hp = setHP();
+		stage = 1;
+		zone = 1;
+		kills = 0;
+		newMonster();
+	}
+	
 	globalUpdate();
 }
 
