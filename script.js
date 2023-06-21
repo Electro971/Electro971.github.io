@@ -48,6 +48,7 @@ function save()
 //autosave
 setInterval (function() {
 	 save();
+	alert("Autosave Complete!")
 }, 300000); //3 minutes
 
 function load() {
