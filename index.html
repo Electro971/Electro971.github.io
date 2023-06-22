@@ -7,9 +7,11 @@
 	<noscript>Brower cannot use JavaScript! (Required)</noscript>
 </head>
 
-<body onload="firstLoad()">
+<div id="topbar">
 	<h1>Adventure Clicker<h1>
-	
+</div>
+
+<body onload="firstLoad()">
 	<div id="monster-box">
 		<img id="monster" src="">
 		<p id="monster-label" class="info-box">Current Monster: <span id="monster-name"></span></p>
@@ -23,7 +25,7 @@
 			<div id="seves" class="hero">
 				<p>Seves the Lucky <span id="seves-level"></span></p>
 				<p>Current Damage: <span id="seves-damage"></span></p>
-				<button class="buy-button" id="seves-buy" onclick='buy("seves",10)'>Hire - 10GP</button>
+				<button class="upgrade-button" id="seves-buy" onclick='buy("seves",10)'>Hire - 10GP</button>
 				<button class="upgrade-button" id="seves-button" onclick="upgrade('seves')">Upgrade</button>
 			</div>
 			
@@ -38,6 +40,9 @@
 			<div id="zone-label" class="info-window">
 				<p>Zone <span id="zone-numbers">1-1</span> Current Zone: <span id="zone-name">1-1</span></p>
 			</div>
+			<div id="left-label" class="info-window">
+				<p>Monster Left to progress: <span id="mons-left"></span></p>
+			</div>
 			<div id="gold-label" class="info-window">
 				<p>Current Gold: </p>
 			</div>
@@ -50,6 +55,8 @@
 		</div>
 	</div>
 	
-	<button onclick="save()">Save</button>
-	<button onclick="load()">Load</button>
+	<div id="bottom-bar" class="navbar">
+		<button onclick="save()">Save</button>
+		<button onclick="load()">Load</button>
+	</div>
 </body>

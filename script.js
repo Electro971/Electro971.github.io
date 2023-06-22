@@ -9,11 +9,12 @@ function firstLoad()
 }
 
 function globalUpdate() {
-	setHP(hpLoad);
+	setHP(hp);
 	updateStage();
 	updateGold();
 	updateKills();
 	updateMonster();
+	document.getElementById("mons-left").innerHTML = 10-counter;
 }
 
 //saving
@@ -41,7 +42,7 @@ function save()
 function buy(hero, cost)
 {
 	if (gold >= cost)
-		document.getElementById(hero+"-buy").style.display = "hidden";
+		document.getElementById(hero+"-buy").style.display = "none";
 }
 
 /* function upgrade(hero)
@@ -61,13 +62,14 @@ function load()
 	if (savedGame != null)
 	{
 		gold = savedGame.gold;
-		hpLoad = savedGame.hp;
+		hp = savedGame.hp;
 		zone = savedGame.zone;
 		stage = savedGame.stage;
 		kills = savedGame.kills;
 		monster = savedGame.monster;
 		counter = savedGame.counter;
-		monsterLevel: monsterLevel;
+		monsterLevel = savedGame.monsterLevel;
+		document.getElementById("monster").src = monster;
 	}
 	else
 	{
@@ -77,6 +79,7 @@ function load()
 		zone = 1;
 		kills = 0;
 		counter =0;
+		monsterLevel=1;
 		newMonster();
 	}
 	
@@ -118,12 +121,11 @@ function clearStage()
 
 function updateMonster()
 {
-	document.getElementById("monLabel").innerHTML = "Monster Level: " + monsterLevel;
-	document.getElementById("monster").src = monster;
 	if (document.getElementById("monster").src.includes("goblin") || document.getElementById("monster").src.includes("Goblin"))
 		document.getElementById("monster-name").innerHTML = "Goblin";
 	setHP(hp);
 	document.getElementById("hp-num").innerHTML = hp;
+	document.getElementById("monLevel").innerHTML = monsterLevel;
 }
 
 function monsterKill()
@@ -131,17 +133,17 @@ function monsterKill()
 	addKill();
 	addGold();
 	counter+=1;
-	if (counter >= 4)
+	if (counter >= 10)
 	{
 		clearStage();
 		counter = 0;
 	}
+	document.getElementById("mons-left").innerHTML = 10-counter;
 	newMonster();
 }
 
 function newMonster()
 {
-	setMonLevel(1);
 	setHP(10);
 	document.getElementById("monster").src = "goblin.jpg";
 	updateMonster();
