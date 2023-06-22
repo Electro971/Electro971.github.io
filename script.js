@@ -4,13 +4,12 @@ function getRandomInt(max) {
 
 function firstLoad()
 {
-	counter=0;
 	load();
 	globalUpdate();
 }
 
 function globalUpdate() {
-	setHP(10);
+	setHP(hpLoad);
 	updateStage();
 	updateGold();
 	updateKills();
@@ -25,8 +24,10 @@ function save()
 		hp: hp,
 		zone: zone,
 		stage: stage,
-		monster: document.getElementById("monster-name").textContent,
-		kills: kills
+		monster: document.getElementById("monster").src,
+		kills: kills,
+		counter: counter,
+		monsterLevel: monsterLevel
 	};
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -60,12 +61,13 @@ function load()
 	if (savedGame != null)
 	{
 		gold = savedGame.gold;
-		hp = savedGame.hp;
+		hpLoad = savedGame.hp;
 		zone = savedGame.zone;
 		stage = savedGame.stage;
 		kills = savedGame.kills;
 		monster = savedGame.monster;
-		setHP(hp);
+		counter = savedGame.counter;
+		monsterLevel: monsterLevel;
 	}
 	else
 	{
@@ -74,6 +76,7 @@ function load()
 		stage = 1;
 		zone = 1;
 		kills = 0;
+		counter =0;
 		newMonster();
 	}
 	
@@ -83,12 +86,6 @@ function load()
 function setHP(x)
 {
 	hp=x;
-}
-
-function setMonLevel(x)
-{
-	level = x;
-	document.getElementById("level-label").innerHTML = "Monster Level: " + level;
 }
 
 function attack()
@@ -121,10 +118,11 @@ function clearStage()
 
 function updateMonster()
 {
-	if (document.getElementById("monster").src.toUpperCase().includes("GOBLIN"))
+	document.getElementById("monLabel").innerHTML = "Monster Level: " + monsterLevel;
+	document.getElementById("monster").src = monster;
+	if (document.getElementById("monster").src.includes("goblin") || document.getElementById("monster").src.includes("Goblin"))
 		document.getElementById("monster-name").innerHTML = "Goblin";
-	else 
-		document.getElementById("monster-name").innerHTML = "null";
+	setHP(hp);
 	document.getElementById("hp-num").innerHTML = hp;
 }
 
