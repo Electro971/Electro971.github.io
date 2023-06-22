@@ -25,8 +25,8 @@ function save()
 		hp: hp,
 		zone: zone,
 		stage: stage,
-		kills: kills,
-		monster: document.getElementById("monster-name")
+		monster: document.getElementById("monster-name").textContent,
+		kills: kills
 	};
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -40,13 +40,13 @@ function save()
 function buy(hero, cost)
 {
 	if (gold >= cost)
-		
+		document.getElementById(hero+"-buy").style.display = "hidden";
 }
 
-function upgrade(hero)
+/* function upgrade(hero)
 {
 	if (gold )
-}
+} */
 
 function updateHero(hero)
 {
@@ -65,11 +65,12 @@ function load()
 		stage = savedGame.stage;
 		kills = savedGame.kills;
 		monster = savedGame.monster;
+		setHP(hp);
 	}
 	else
 	{
 		gold = 0;
-		hp = setHP();
+		hp = setHP(10);
 		stage = 1;
 		zone = 1;
 		kills = 0;
@@ -120,7 +121,7 @@ function clearStage()
 
 function updateMonster()
 {
-	if (document.getElementById("monster").src.includes("goblin"))
+	if (document.getElementById("monster").src.toUpperCase().includes("GOBLIN"))
 		document.getElementById("monster-name").innerHTML = "Goblin";
 	else 
 		document.getElementById("monster-name").innerHTML = "null";
