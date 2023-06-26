@@ -15,6 +15,7 @@ function globalUpdate() {
 	updateKills();
 	updateMonster();
 	document.getElementById("mons-left").innerHTML = 10-counter;
+	updateHero("seves", sevesLevel);
 }
 
 //saving
@@ -28,36 +29,24 @@ function save()
 		monster: document.getElementById("monster").src,
 		kills: kills,
 		counter: counter,
-		monsterLevel: monsterLevel
+		monsterLevel: monsterLevel,
+		
+		
 	};
+	
+	sevesFile = {
+		sevesBool: sevesBool,
+		level: sevesLevel
+	}
+	
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
-}
-
-//autosave
-/* setInterval (function() {
-	 save();
-	alert("Autosave Complete!")
-}, 300000); //3 minutes */
-
-function buy(hero, cost)
-{
-	if (gold >= cost)
-		document.getElementById(hero+"-buy").style.display = "none";
-}
-
-/* function upgrade(hero)
-{
-	if (gold )
-} */
-
-function updateHero(hero)
-{
-	localStorage.setItem("gameSave", JSON.stringify(gameSave));
+	localStorage.setItem("sevesFile", JSON.stringify(sevesFile));
 }
 
 function load() 
 {
 	savedGame = JSON.parse(localStorage.getItem("gameSave"));
+	sevesFile = JSON.parse(localStorage.getItem("sevesFile"));
 	
 	if (savedGame != null)
 	{
@@ -78,12 +67,51 @@ function load()
 		stage = 1;
 		zone = 1;
 		kills = 0;
-		counter =0;
+		counter = 0;
 		monsterLevel=1;
 		newMonster();
 	}
 	
+	if (sevesFile != null)
+	{
+		seves = sevesFile.seves;
+		sevesLevel = sevesFile.level;
+	}
+	else
+	{
+		sevesBool = false;
+		sevesLevel = 0;
+	}
+	
 	globalUpdate();
+}
+
+//autosave
+/* setInterval (function() {
+	 save();
+	alert("Autosave Complete!")
+}, 300000); //3 minutes */
+
+function buy(hero, cost)
+{
+	if (gold >= cost)
+	{
+		gold -= document.getElementById(hero+"-buy-cost").textContent;
+		updateGold();
+		document.getElementById(hero+"-buy").style.display = "none";
+		hero = true;
+		document.getElementById(hero+"-level").innerHTML = 1;
+	}
+}
+
+/* function upgrade(hero)
+{
+	if (gold )
+} */
+
+function updateHero(hero, heroLevel)
+{
+	document.getElementById(hero+"-level").innerHTML = heroLevel;
 }
 
 function setHP(x)
@@ -138,7 +166,7 @@ function monsterKill()
 		clearStage();
 		counter = 0;
 	}
-	document.getElementById("mons-left").innerHTML = 10-counter;
+	document.getElementById("mons-left").innerHTML = Math.abs(10-counter);
 	newMonster();
 }
 

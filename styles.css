@@ -12,12 +12,20 @@ img {
 	height: auto;
 }
 
+body {
+	margin-top: 10%;
+}
+
 .upgrade-button {
 	background-color: white;
 }
 
 .upgrade-button:hover {
 	background-color: yellow;
+}
+
+.buy-button:hover {
+	background-color: green;
 }
 
 .hero {
@@ -74,16 +82,6 @@ img {
 	
 	background-color: gray;
 	font-size: 12px;	
-}
-
-.blink_me {
-  animation: blinker 200ms linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
 }
 
 #topbar {
