@@ -24,6 +24,10 @@ body {
 	background-color: yellow;
 }
 
+.buy-button {
+	background-color: white;
+}
+
 .buy-button:hover {
 	background-color: green;
 }

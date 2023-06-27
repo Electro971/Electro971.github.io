@@ -16,6 +16,7 @@ function globalUpdate() {
 	updateMonster();
 	document.getElementById("mons-left").innerHTML = 10-counter;
 	updateHero("seves", sevesLevel);
+	updateHero("sid",sidLevel);
 }
 
 //saving
@@ -39,15 +40,24 @@ function save()
 		level: sevesLevel
 	}
 	
+	sidFile = {
+		sidBool: sidBool,
+		level: sidLevel
+	}
+	
+	
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
 	localStorage.setItem("sevesFile", JSON.stringify(sevesFile));
+	localStorage.setItem("sidFile", JSON.stringify(sidFile));
 }
 
 function load() 
 {
 	savedGame = JSON.parse(localStorage.getItem("gameSave"));
 	sevesFile = JSON.parse(localStorage.getItem("sevesFile"));
+	sidFile = JSON.parse(localStorage.getItem("sidFile"));
 	
+	//Info
 	if (savedGame != null)
 	{
 		gold = savedGame.gold;
@@ -72,6 +82,7 @@ function load()
 		newMonster();
 	}
 	
+	//Seves
 	if (sevesFile != null)
 	{
 		seves = sevesFile.seves;
@@ -81,6 +92,18 @@ function load()
 	{
 		sevesBool = false;
 		sevesLevel = 0;
+	}
+	
+	//Sid
+	if (sidFile != null)
+	{
+		sid = sidFile.seves;
+		sidLevel = sidFile.level;
+	}
+	else
+	{
+		sidBool = false;
+		sidLevel = 0;
 	}
 	
 	globalUpdate();
