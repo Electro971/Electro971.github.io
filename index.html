@@ -11,29 +11,22 @@
 	<h1>Adventure Clicker<h1>
 </div>
 
-<body onload="firstLoad()">
+<body onload="load()">
 	<div id="monster-box">
 		<img id="monster" src="">
 		<p id="monster-label" class="info-box">Current Monster: <span id="monster-name"></span></p>
 		<p id="hp-label" class="info-box">HP Left: <span id="hp-num"></span></p>
 		<p id="level-label" class="info-box">Monster Level: <span id="monLevel"></span></p>
 		<button id="attack-button" onclick="attack()">Attack</button>
-	</div>
+	</div>	
 	
 	<div id="interact-box">
 		<div id="hero-box">
-			<div id="seves" class="hero">
-				<p>Seves the Lucky - <span id="seves-level"></span></p>
-				<p>Current Damage: <span id="seves-damage"></span></p>
-				<button class="buy-button" id="seves-buy" onclick='buy("seves",10)'>Hire - <span id="seves-buy-cost">10</span>GP</button>
-				<button class="upgrade-button" id="seves-button" onclick="upgrade('seves')">Upgrade</button>
+			<div id="hero" class="hero">
+				<p><span id="hero-name"></span> - Level <span id="hero-level"></span> <span id="hero-class"></span></p>
 			</div>
-			
-			<div id="sid" class="hero">
-				<p>Sid the Sidekick - <span id="sid-level"></span></p>
-				<p>Current Damage: <span id="sid-damage"></p>
-				<button class="buy-button" id="sid-buy" onclick='buy("sid",25)'>Hire - <span id="seves-buy-cost">25</span>GP</button>
-				<button class="upgrade-button">Upgrade</button>
+			<div id="info" class="hero">
+				<p>Experience: <span id="hero-exp"></span></p>
 			</div>
 		</div>
 		
@@ -54,6 +47,13 @@
 				<p>Total Kills: </p>
 			</div>
 		</div>
+	</div>
+	
+	<div id="bottom-console" class="info-window">
+		<h3>Events</h3>
+		<table>
+			<tr><td id="table0"></td></tr>
+		</table>
 	</div>
 	
 	<div id="bottom-bar" class="navbar">

@@ -2,12 +2,6 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function firstLoad()
-{
-	load();
-	globalUpdate();
-}
-
 function globalUpdate() {
 	setHP(hp);
 	updateStage();
@@ -15,8 +9,8 @@ function globalUpdate() {
 	updateKills();
 	updateMonster();
 	document.getElementById("mons-left").innerHTML = 10-counter;
-	updateHero("seves", sevesLevel);
-	updateHero("sid",sidLevel);
+	document.getElementById("hero-exp").innerHTML = exp;
+	updateHero();
 }
 
 //saving
@@ -30,32 +24,25 @@ function save()
 		monster: document.getElementById("monster").src,
 		kills: kills,
 		counter: counter,
-		monsterLevel: monsterLevel,
-		
-		
+		monsterLevel: monsterLevel
 	};
 	
-	sevesFile = {
-		sevesBool: sevesBool,
-		level: sevesLevel
-	}
-	
-	sidFile = {
-		sidBool: sidBool,
-		level: sidLevel
+	heroFile = {
+		name: name,
+		level: level,
+		heroClass: heroClass,
+		exp: exp
 	}
 	
 	
 	localStorage.setItem("gameSave", JSON.stringify(gameSave));
-	localStorage.setItem("sevesFile", JSON.stringify(sevesFile));
-	localStorage.setItem("sidFile", JSON.stringify(sidFile));
+	localStorage.setItem("heroFile", JSON.stringify(heroFile));
 }
 
 function load() 
 {
 	savedGame = JSON.parse(localStorage.getItem("gameSave"));
-	sevesFile = JSON.parse(localStorage.getItem("sevesFile"));
-	sidFile = JSON.parse(localStorage.getItem("sidFile"));
+	heroFile = JSON.parse(localStorage.getItem("heroFile"));
 	
 	//Info
 	if (savedGame != null)
@@ -80,32 +67,21 @@ function load()
 		counter = 0;
 		monsterLevel=1;
 		newMonster();
+		firstLoad();
 	}
 	
-	//Seves
-	if (sevesFile != null)
+	if (heroFile != null)
 	{
-		seves = sevesFile.seves;
-		sevesLevel = sevesFile.level;
+		name = heroFile.name;
+		level = heroFile.level;
+		exp = heroFile.exp;
+		heroClass = heroFile.heroClass;
 	}
 	else
 	{
-		sevesBool = false;
-		sevesLevel = 0;
+		level = 1;
+		exp = 0;
 	}
-	
-	//Sid
-	if (sidFile != null)
-	{
-		sid = sidFile.seves;
-		sidLevel = sidFile.level;
-	}
-	else
-	{
-		sidBool = false;
-		sidLevel = 0;
-	}
-	
 	globalUpdate();
 }
 
@@ -115,26 +91,33 @@ function load()
 	alert("Autosave Complete!")
 }, 300000); //3 minutes */
 
-function buy(hero, cost)
+function firstLoad()
 {
-	if (gold >= cost)
-	{
-		gold -= document.getElementById(hero+"-buy-cost").textContent;
-		updateGold();
-		document.getElementById(hero+"-buy").style.display = "none";
-		hero = true;
-		document.getElementById(hero+"-level").innerHTML = 1;
+	message("Welcome to Adventure Clicker!");
+	window.alert("Welcome to Adventure Clicker!");
+	name = window.prompt("What's your name, hero?","");
+	heroClass = window.prompt("What class are you? (This doesn't do anything yet.)","");
+	
+	goblinFile = {
+		goblinName: "Goblin",
+		expVal: 3,
+		imgSrc: "goblin.jpg",
+		monsterNumber: 1
 	}
+	
+	localStorage.setItem("goblinFile", JSON.stringify(goblinFile));
 }
 
-/* function upgrade(hero)
+function updateHero()
 {
-	if (gold )
-} */
+	document.getElementById("hero-name").innerHTML = name;
+	document.getElementById("hero-level").innerHTML = level;
+	document.getElementById("hero-class").innerHTML = heroClass;
+}
 
-function updateHero(hero, heroLevel)
+function message(msg)
 {
-	document.getElementById(hero+"-level").innerHTML = heroLevel;
+	document.getElementById("table"+0).innerHTML = msg;
 }
 
 function setHP(x)
@@ -191,6 +174,13 @@ function monsterKill()
 	}
 	document.getElementById("mons-left").innerHTML = Math.abs(10-counter);
 	newMonster();
+	addExp();
+}
+
+function addExp()
+{
+	if(document.getElementById("monster-name") == "Goblin")
+		exp+=3;
 }
 
 function newMonster()

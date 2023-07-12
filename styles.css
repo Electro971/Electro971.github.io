@@ -38,7 +38,7 @@ body {
 }
 
 .info-window {
-	padding: 2px 2px 2px 2px;
+	padding: 5px 5px 5px 5px;
 	border: solid black 1px;
 }
 
@@ -61,9 +61,17 @@ body {
 	background-color: #ff0000;
 }
 
+#bottom-console {
+	display: flex;
+	flex-direction: column;
+	height: 40%;
+	width: auto;
+	background-color: gray;
+}
+
 #interact-box {
 	display: flex;
-	padding: 5px 5px 5px 5px;
+	padding: 2px 2px 2px 2px;
 }
 
 #hero-box {
