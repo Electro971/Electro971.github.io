@@ -12,77 +12,53 @@ img {
 	height: auto;
 }
 
+#fisherman {
+	max-width: 100%;
+	border: solid black 2px;
+}
+
 body {
 	margin-top: 10%;
-}
-
-.upgrade-button {
-	background-color: white;
-}
-
-.upgrade-button:hover {
-	background-color: yellow;
-}
-
-.buy-button {
-	background-color: white;
-}
-
-.buy-button:hover {
-	background-color: green;
-}
-
-.hero {
-	padding: 2px 2px 2px 2px;
-	border: solid black 1px;
 }
 
 .info-window {
 	padding: 5px 5px 5px 5px;
 	border: solid black 1px;
+	background-color: gray;
+	font-size: 12px;
 }
 
 .info-window:hover {
 	background-color: #333333;
 }
 
-#monster-box {
+#main-div {
 	display: flex;
 	flex-direction: column;
-}
-
-#attack-button {
-	background-color: white;
-	max-width: 70px;
+	
+	width: 100%;
 	height: auto;
-}
-
-#attack-button:hover {
-	background-color: #ff0000;
-}
-
-#bottom-console {
-	display: flex;
-	flex-direction: column;
-	height: 40%;
-	width: auto;
-	background-color: gray;
-}
-
-#interact-box {
-	display: flex;
 	padding: 2px 2px 2px 2px;
 }
 
-#hero-box {
+#top-row {
+	flex-direction: row;
+    display: flex;
+}
+
+#fishing-window {
+	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
 	
 	width: 60%;
 	height: auto;
 	padding: 2px 2px 2px 2px;
 	
 	background-color: gray;
+}
+
+#fish-box {
+	height: 100%;
 }
 
 #info-box {
@@ -94,6 +70,16 @@ body {
 	
 	background-color: gray;
 	font-size: 12px;	
+}
+
+#hero-box {
+	display: flex;
+	justify-content: center;
+}
+
+#log-box {
+	display: flex;
+	flex-direction: column;
 }
 
 #topbar {

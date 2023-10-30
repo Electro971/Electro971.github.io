@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Adventure Clicker</title>
+	<title>Adventure Fisher</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="script.js"></script>
 	<noscript>Brower cannot use JavaScript! (Required)</noscript>
 </head>
 
 <div id="topbar">
-	<h1>Adventure Clicker<h1>
+	<h1>Adventure Fisher<h1>
 </div>
 
 <body onload="load()">
-	<div id="monster-box">
-		<img id="monster" src="">
-		<p id="monster-label" class="info-box">Current Monster: <span id="monster-name"></span></p>
-		<p id="hp-label" class="info-box">HP Left: <span id="hp-num"></span></p>
-		<p id="level-label" class="info-box">Monster Level: <span id="monLevel"></span></p>
-		<button id="attack-button" onclick="attack()">Attack</button>
-	</div>	
-	
-	<div id="interact-box">
-		<div id="hero-box">
-			<div id="hero" class="hero">
-				<p><span id="hero-name"></span> - Level <span id="hero-level"></span> <span id="hero-class"></span></p>
+<div id="main-div">
+	<div id="top-row">
+		<div id="info-box" class="info-window">
+		<h3 id="name"></h3>
+			<div id="hero-box">
+				<img src="fisherman.png" id="fisherman">
 			</div>
-			<div id="info" class="hero">
-				<p>Experience: <span id="hero-exp"></span></p>
-			</div>
+			<div id="fishing-label" class="info-window">
+					<p>Fishing Speed <span id="fishing-numbers">100%</span></p>
+				</div>
+				<div id="money-label" class="info-window">
+					<p>Current Money: <span id="money-numbers">0</span></p>
+				</div>
+				<div id="area-label" class="info-window">
+					<p>Current Area: <span id="area-name">Gunwhale Town</span></p>
+					<button id="travel-button">Travel</button>
+				</div>
 		</div>
 		
-		<div id="info-box">
-			<div id="zone-label" class="info-window">
-				<p>Zone <span id="zone-numbers">1-1</span> Current Zone: <span id="zone-name">1-1</span></p>
+		<div id="fishing-window" class="info-window">
+			<div id="area-label" class="info-window">
+				<button id="fish-button">Fish!</button>
 			</div>
-			<div id="left-label" class="info-window">
-				<p>Monsters Left to progress: <span id="mons-left"></span></p>
-			</div>
-			<div id="gold-label" class="info-window">
-				<p>Current Gold: </p>
-			</div>
-			<div id="mana-label" class="info-window">
-				<p>Current Mana: </p>
-			</div>
-			<div id="kills-label" class="info-window">
-				<p>Total Kills: </p>
+			<div id="fish-box" class="info-window">
+				<h3>On the hook: <span id="fish-name">Nothing</span></h3>
+				
 			</div>
 		</div>
 	</div>
 	
-	<div id="bottom-console" class="info-window">
-		<h3>Events</h3>
-		<table>
-			<tr><td id="table0"></td></tr>
-		</table>
+	<div id="other-box">
+		<h2>Log</h2>
+		<div id="log-box" class="info-window">
+			<button onclick="message('debug')">debug</button>
+		</div>
 	</div>
-	
-	<div id="bottom-bar" class="navbar">
-		<button onclick="save()">Save</button>
-		<button onclick="load()">Load</button>
-	</div>
+</div>
 </body>
