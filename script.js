@@ -1,12 +1,13 @@
 var messages = 0;
 var fishingSpeed = 1;
+var currentFish = 0;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
 function globalUpdate() {
-	
+	document.getElementById("cargo-numbers").innerHTML = currentFish;
 }
 
 //saving
@@ -42,7 +43,7 @@ function fish(biome)
 		document.getElementById("fish-name").innerHTML = "???"
 		document.getElementById("fish-button").disabled = true;
 		setTimeout(function(){
-			alert("you got one");
+			currentFish++;
 			document.getElementById("fish-name").innerHTML = "Nothing"
 			document.getElementById("fish-button").disabled = false;
 		}, (getRandomInt(10)*1000)/fishingSpeed);
@@ -97,9 +98,10 @@ var flag0 = false;
 	}
  }
 
-// Checks plot/messages every second
+// Checks plot/messages every second & updates
 setInterval (function() {
 	 plot();
+	 globalUpdate();
 }, 100);
 
 //autosave
